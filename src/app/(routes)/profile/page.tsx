@@ -20,7 +20,9 @@ export default function Profile() {
           </div>
         </div>
         <button className="hover:rotate-45 duration-300">
-          <Settings />
+          <Link href={"/settings"}>
+            <Settings />
+          </Link>
         </button>
       </div>
       <section className="mt-8 flex justify-center">
@@ -42,8 +44,10 @@ export default function Profile() {
       </section>
       <section className="mt-4">
         <div className="flex justify-center gap-4 font-semibold">
-          <Link href={'/'}>Posts</Link>
-        <Link href={'/highlights'} className="text-gray-400">Highlights</Link>
+          <Link href={"/"}>Posts</Link>
+          <Link href={"/highlights"} className="text-gray-400">
+            Highlights
+          </Link>
         </div>
       </section>
       <section className="mt-4">

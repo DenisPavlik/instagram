@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^7.3.0",
+    "@radix-ui/themes": "^3.2.1",
     "lucide-react": "^0.562.0",
     "next": "14.0.4",
     "next-auth": "^5.0.0-beta.30",
+    "prisma": "^7.3.0",
     "react": "^18",
     "react-dom": "^18",
     "react-masonry-css": "^1.0.16"
