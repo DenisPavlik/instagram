@@ -1,20 +1,27 @@
+import { auth } from "@/auth";
 import PostsGrid from "@/components/PostsGrid";
+import { prisma } from "@/db";
 import { CheckIcon, ChevronLeft, Settings } from "lucide-react";
 import Link from "next/link";
 
-export default function Profile() {
+export default async function Profile() {
+  const session = await auth();
+  const profileDoc = await prisma.profile.findFirstOrThrow({ where: {
+    email: session?.user?.email as string
+  } });
+
   return (
     <div>
       <div className="flex items-center justify-between">
         <button className="group relative px-3 py-2 overflow-hidden">
-          <Link href={'/'} className="flex items-center">
+          <Link href={"/"} className="flex items-center">
             <ChevronLeft className="transition-all duration-500 group-hover:opacity-0 group-hover:-translate-x-2" />
             <ChevronLeft className="absolute left-3 opacity-0 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0" />
           </Link>
         </button>
 
         <div className="font-bold flex items-center gap-2">
-          john_doe
+          {profileDoc.username}
           <div className="size-5 rounded-full bg-cRed inline-flex justify-center items-center text-white">
             <CheckIcon size={16} />
           </div>
@@ -38,9 +45,9 @@ export default function Profile() {
         </div>
       </section>
       <section className="text-center mt-4">
-        <h1 className="text-bold text-xl">John</h1>
-        <p className="text-gray-400 my-1">Business account</p>
-        <p className="text-sm">Entrepreneur, CEO of RoboTech</p>
+        <h1 className="text-bold text-xl">{profileDoc.name}</h1>
+        <p className="text-gray-400 my-1">{profileDoc.subtitle}</p>
+        <p className="text-sm">{profileDoc.bio}</p>
       </section>
       <section className="mt-4">
         <div className="flex justify-center gap-4 font-semibold">
