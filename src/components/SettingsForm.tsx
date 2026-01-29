@@ -1,18 +1,10 @@
 "use client";
 import { Button, TextArea, TextField } from "@radix-ui/themes";
 import { UploadCloud } from "lucide-react";
-import { getProfile, updateProfile } from "@/actions";
+import { updateProfile } from "@/actions";
 import { useRouter } from "next/navigation";
-
-type Profile = {
-  id: string;
-  email: string;
-  avatar: string | null;
-  username: string | null;
-  name: string | null;
-  subtitle: string | null;
-  bio: string | null;
-} | null;
+import { Profile } from "@prisma/client";
+import { useRef, useState } from "react";
 
 export default function SettingForm({
   userEmail,
@@ -22,6 +14,9 @@ export default function SettingForm({
   profileDoc: Profile;
 }) {
   const router = useRouter();
+  const fileInRef = useRef<HTMLInputElement | null>(null);
+  const [file, setFile] = useState<File | null>(null)
+
   return (
     <form
       action={async (data: FormData) => {
@@ -35,7 +30,10 @@ export default function SettingForm({
           <div className="bg-gray-500 size-24 rounded-full"></div>
         </div>
         <div>
-          <Button type="button" variant="outline">
+          <input type="file" name="file" className="hidden"
+          ref={fileInRef}
+          onChange={ev => setFile(ev.target.files?.[0] ?? null)} />
+          <Button type="button" variant="outline" onClick={() => fileInRef.current?.click()}>
             <UploadCloud /> change avatar
           </Button>
         </div>
