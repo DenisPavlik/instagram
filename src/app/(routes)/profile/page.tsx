@@ -37,7 +37,7 @@ export default async function Profile() {
           <div className="size-44 bg-white rounded-full p-2">
             <div className="size-40 aspect-square overflow-hidden rounded-full">
               <img
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fG1hbnxlbnwwfHwwfHx8MA%3D%3D"
+                src={profileDoc.avatar || ''}
                 alt=""
               />
             </div>
