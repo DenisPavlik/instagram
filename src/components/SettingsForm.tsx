@@ -16,7 +16,7 @@ export default function SettingForm({
   const router = useRouter();
   const fileInRef = useRef<HTMLInputElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
-  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const [avatarUrl, setAvatarUrl] = useState<string>(profileDoc.avatar || "");
 
   useEffect(() => {
     if (file) {
