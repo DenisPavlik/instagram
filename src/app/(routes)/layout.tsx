@@ -3,13 +3,15 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
+import MobileNav from "@/components/MobileNav";
+import logo from "@/app/logo.png";
+import Image from "next/image";
 import Link from "next/link";
 import {
-  CameraIcon,
-  GridIcon,
-  HomeIcon,
+  Home as HomeIcon,
+  Search as SearchIcon,
+  Camera as CameraIcon,
   LayoutGrid,
-  SearchIcon,
   User2Icon,
 } from "lucide-react";
 
@@ -28,32 +30,32 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} p-4`}>
+      <body className={`${inter.className}`}>
         <Theme>
-          {children}
-          <div className="fixed bottom-0 bg-white px-4 py-2 left-0 right-0">
-            <div className="max-w-sm mx-auto flex items-center gap-6 justify-between *:size-12 *:flex *:items-center *:justify-center">
-              <Link href="/">
-                <HomeIcon />
-              </Link>
-              <Link href="/search">
-                <SearchIcon />
-              </Link>
-              <Link
-                href="/create"
-                className="bg-gradient-to-tr from-cOrange to-cRed text-white size-12 flex
-                items-center justify-center rounded-full relative -top-6 shadow-md shadow-gray-400"
-              >
-                <CameraIcon />
-              </Link>
-              <Link href="/browse">
-                <LayoutGrid />
-              </Link>
-              <Link href="/profile">
-                <User2Icon />
-              </Link>
+          <div className="flex">
+            <div className="hidden lg:block bg-gray-100 p-4 w-48 border-r border-gray-500/20">
+              <div className="top-0 sticky">
+                <Image
+                  src={logo}
+                  alt="Instagram Logo"
+                  width={1000}
+                  height={1000}
+                  className="w-40 mx-auto"
+                />
+                <div className="grid grid-cols-1 gap-5 px-2">
+                  <Link href="/home" className="flex items-center gap-4 text-xl"><HomeIcon/> Home</Link>
+                  <Link href="/search" className="flex items-center gap-4 text-xl"><SearchIcon/> Search</Link>
+                  <Link href="/create" className="flex items-center gap-4 text-xl"><CameraIcon/> Create</Link>
+                  <Link href="/browse" className="flex items-center gap-4 text-xl"><LayoutGrid/> Browse</Link>
+                  <Link href="/profile" className="flex items-center gap-4 text-xl"><User2Icon/> Profile</Link>
+                </div>
+              </div>
+            </div>
+            <div className="p-4 mx-auto">
+              <div>{children}</div>
             </div>
           </div>
+          <MobileNav />
         </Theme>
       </body>
     </html>
