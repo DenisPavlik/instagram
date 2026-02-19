@@ -35,7 +35,7 @@ export default function SettingForm({
   return (
     <form
       action={async (data: FormData) => {
-        await updateProfile(data, userEmail);
+        await updateProfile(data);
         router.push("/profile");
         router.refresh();
       }}
@@ -55,7 +55,7 @@ export default function SettingForm({
             name="file"
             className="hidden"
             ref={fileInRef}
-            onChange={(ev) => setFile(ev.target.files?.[0] ?? null)}
+            onChange={(ev) => setFile(ev.target.files?.[0] || null)}
           />
           <Button
             type="button"

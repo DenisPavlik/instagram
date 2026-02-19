@@ -14,11 +14,21 @@ datasource db {
 }
 
 model Profile {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  email    String @unique
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  email    String  @unique
   avatar   String?
   username String?
   name     String?
   subtitle String?
   bio      String?
+}
+
+model Post {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  author      String   @unique
+  image       String
+  description String?
+  likesCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

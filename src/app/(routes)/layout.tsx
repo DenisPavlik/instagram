@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body className={`${inter.className}`}>
         <Theme>
           <div className="flex">
-            <div className="hidden lg:block bg-gray-100 p-4 w-48 border-r border-gray-500/20">
+            <div className="hidden lg:block bg-gray-100 p-4 w-48 border-r border-gray-500/20 min-h-screen">
               <div className="top-0 sticky">
                 <Image
                   src={logo}
